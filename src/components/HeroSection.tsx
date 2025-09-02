@@ -57,7 +57,7 @@ const HeroSection = () => {
             className="inline-flex items-center gap-2 bg-accent/20 backdrop-blur-sm border border-accent/30 rounded-full px-4 py-2 mb-8"
           >
             <Star className="h-4 w-4 text-accent" />
-            <span className="text-sm font-medium text-accent">Terpercaya Sejak 2010</span>
+            <span className="text-sm font-medium text-accent">Berdiri Sejak 2019</span>
             <Star className="h-4 w-4 text-accent" />
           </motion.div>
 
