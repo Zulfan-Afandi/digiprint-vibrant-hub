@@ -92,7 +92,7 @@ const ProductsSection = () => {
                   product.status === 'available' ? 'group-hover:opacity-100' : ''
                 }`} />
                 
-                <div className={`relative p-6 space-y-4 rounded-lg overflow-hidden${
+                <div className={`relative p-6 space-y-4 ${
                   product.status === 'unavailable' ? 'opacity-60' : ''
                 }`}>
                   {/* Icon */}
