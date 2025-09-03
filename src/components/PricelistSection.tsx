@@ -1,33 +1,34 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Card } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { Check, Star } from 'lucide-react';
 
 const pricelist = {
   fotokopi: [
-    { name: 'Fotokopi A4 Hitam Putih', price: 'Rp 500', unit: '/lembar', popular: false },
-    { name: 'Fotokopi A4 Warna', price: 'Rp 2.000', unit: '/lembar', popular: true },
-    { name: 'Fotokopi A3 Hitam Putih', price: 'Rp 1.000', unit: '/lembar', popular: false },
-    { name: 'Fotokopi A3 Warna', price: 'Rp 4.000', unit: '/lembar', popular: false },
+    { name: 'Fotokopi A4 Hitam Putih', price: 'Rp 500', unit: '/lembar', popular: false, status: 'available' },
+    { name: 'Fotokopi A4 Warna', price: 'Rp 2.000', unit: '/lembar', popular: true, status: 'available' },
+    { name: 'Fotokopi A3 Hitam Putih', price: 'Rp 1.000', unit: '/lembar', popular: false, status: 'unavailable' },
+    { name: 'Fotokopi A3 Warna', price: 'Rp 4.000', unit: '/lembar', popular: false, status: 'unavailable' },
   ],
   print: [
-    { name: 'Print A4 Hitam Putih', price: 'Rp 1.000', unit: '/lembar', popular: false },
-    { name: 'Print A4 Warna', price: 'Rp 3.000', unit: '/lembar', popular: true },
-    { name: 'Print A3 Hitam Putih', price: 'Rp 2.000', unit: '/lembar', popular: false },
-    { name: 'Print A3 Warna', price: 'Rp 6.000', unit: '/lembar', popular: false },
+    { name: 'Print A4 Hitam Putih', price: 'Rp 1.000', unit: '/lembar', popular: false, status: 'available' },
+    { name: 'Print A4 Warna', price: 'Rp 3.000', unit: '/lembar', popular: true, status: 'available' },
+    { name: 'Print A3 Hitam Putih', price: 'Rp 2.000', unit: '/lembar', popular: false, status: 'unavailable' },
+    { name: 'Print A3 Warna', price: 'Rp 6.000', unit: '/lembar', popular: false, status: 'unavailable' },
   ],
   undangan: [
-    { name: 'Undangan Pernikahan Standard', price: 'Rp 5.000', unit: '/pcs', popular: false },
-    { name: 'Undangan Pernikahan Premium', price: 'Rp 10.000', unit: '/pcs', popular: true },
-    { name: 'Undangan Khitanan/Aqiqah', price: 'Rp 3.000', unit: '/pcs', popular: false },
-    { name: 'Undangan Custom Design', price: 'Rp 15.000', unit: '/pcs', popular: false },
+    { name: 'Undangan Pernikahan Standard', price: 'Rp 5.000', unit: '/pcs', popular: false, status: 'available' },
+    { name: 'Undangan Pernikahan Premium', price: 'Rp 10.000', unit: '/pcs', popular: true, status: 'unavailable' },
+    { name: 'Undangan Khitanan/Aqiqah', price: 'Rp 3.000', unit: '/pcs', popular: false, status: 'available' },
+    { name: 'Undangan Custom Design', price: 'Rp 15.000', unit: '/pcs', popular: false, status: 'available' },
   ],
   banner: [
-    { name: 'Banner Indoor', price: 'Rp 25.000', unit: '/m²', popular: false },
-    { name: 'Banner Outdoor', price: 'Rp 35.000', unit: '/m²', popular: true },
-    { name: 'X-Banner 60x160', price: 'Rp 75.000', unit: '/unit', popular: false },
-    { name: 'Roll Banner 80x200', price: 'Rp 100.000', unit: '/unit', popular: false },
+    { name: 'Banner Indoor', price: 'Rp 25.000', unit: '/m²', popular: false, status: 'available' },
+    { name: 'Banner Outdoor', price: 'Rp 35.000', unit: '/m²', popular: true, status: 'available' },
+    { name: 'X-Banner 60x160', price: 'Rp 75.000', unit: '/unit', popular: false, status: 'available' },
+    { name: 'Roll Banner 80x200', price: 'Rp 100.000', unit: '/unit', popular: false, status: 'available' },
   ],
 };
 
@@ -106,6 +107,8 @@ const PricelistSection = () => {
                   >
                     <Card className={`p-6 hover:shadow-lg transition-all duration-base ${
                       item.popular ? 'border-accent shadow-glow relative overflow-hidden' : ''
+                    } ${
+                      item.status === 'unavailable' ? 'opacity-60' : ''
                     }`}>
                       {item.popular && (
                         <div className="absolute top-0 right-0 bg-accent text-accent-foreground px-3 py-1 rounded-bl-lg text-xs font-semibold flex items-center gap-1">
@@ -123,7 +126,16 @@ const PricelistSection = () => {
                             <Check className="h-5 w-5 text-primary" />
                           </motion.div>
                           <div>
-                            <h4 className="font-semibold text-lg">{item.name}</h4>
+                            <h4 className={`font-semibold text-lg ${
+                              item.status === 'unavailable' ? 'line-through text-muted-foreground' : ''
+                            }`}>
+                              {item.name}
+                            </h4>
+                            {item.status === 'unavailable' && (
+                              <Badge variant="destructive" className="mt-1 text-xs">
+                                Belum Tersedia
+                              </Badge>
+                            )}
                             <p className="text-sm text-muted-foreground">
                               Kualitas terjamin, hasil memuaskan
                             </p>
@@ -131,10 +143,16 @@ const PricelistSection = () => {
                         </div>
                         
                         <div className="text-right">
-                          <div className="text-2xl font-bold text-primary">
+                          <div className={`text-2xl font-bold ${
+                            item.status === 'unavailable' 
+                              ? 'text-muted-foreground line-through' 
+                              : 'text-primary'
+                          }`}>
                             {item.price}
                           </div>
-                          <div className="text-sm text-muted-foreground">
+                          <div className={`text-sm text-muted-foreground ${
+                            item.status === 'unavailable' ? 'line-through' : ''
+                          }`}>
                             {item.unit}
                           </div>
                         </div>

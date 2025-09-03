@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Card } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 import { FileText, Image, Mail, Package, Palette, Printer } from 'lucide-react';
 
 const products = [
@@ -9,6 +10,7 @@ const products = [
     description: 'Layanan fotokopi cepat dengan hasil jernih',
     price: 'Mulai Rp 500/lembar',
     color: 'primary',
+    status: 'available',
   },
   {
     icon: Mail,
@@ -16,6 +18,7 @@ const products = [
     description: 'Cetak undangan pernikahan & acara spesial',
     price: 'Mulai Rp 5.000/pcs',
     color: 'accent',
+    status: 'available',
   },
   {
     icon: Image,
@@ -23,6 +26,7 @@ const products = [
     description: 'Banner outdoor/indoor berkualitas tinggi',
     price: 'Mulai Rp 25.000/m²',
     color: 'secondary',
+    status: 'unavailable',
   },
   {
     icon: Package,
@@ -30,6 +34,7 @@ const products = [
     description: 'Brosur promosi dengan desain menarik',
     price: 'Mulai Rp 1.000/lembar',
     color: 'primary',
+    status: 'available',
   },
   {
     icon: Palette,
@@ -37,6 +42,7 @@ const products = [
     description: 'Sticker custom berbagai ukuran',
     price: 'Mulai Rp 10.000/sheet',
     color: 'accent',
+    status: 'available',
   },
   {
     icon: Printer,
@@ -44,6 +50,7 @@ const products = [
     description: 'Print dokumen hitam putih & warna',
     price: 'Mulai Rp 1.000/lembar',
     color: 'secondary',
+    status: 'available',
   },
 ];
 
@@ -81,12 +88,16 @@ const ProductsSection = () => {
             >
               <Card className="group relative overflow-hidden h-full hover:shadow-card transition-all duration-slow cursor-pointer">
                 {/* Background Gradient on Hover */}
-                <div className="absolute inset-0 bg-gradient-card opacity-0 group-hover:opacity-100 transition-opacity duration-slow" />
+                <div className={`absolute inset-0 bg-gradient-card opacity-0 transition-opacity duration-slow ${
+                  product.status === 'available' ? 'group-hover:opacity-100' : ''
+                }`} />
                 
-                <div className="relative p-6 space-y-4">
+                <div className={`relative p-6 space-y-4 ${
+                  product.status === 'unavailable' ? 'opacity-60' : ''
+                }`}>
                   {/* Icon */}
                   <motion.div
-                    whileHover={{ scale: 1.2, rotate: 360 }}
+                    whileHover={product.status === 'available' ? { scale: 1.2, rotate: 360 } : {}}
                     transition={{ duration: 0.5 }}
                     className={`inline-flex p-3 rounded-lg ${
                       product.color === 'primary'
@@ -101,32 +112,50 @@ const ProductsSection = () => {
 
                   {/* Content */}
                   <div>
-                    <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
+                    <h3 className={`text-xl font-bold mb-2 transition-colors ${
+                      product.status === 'unavailable' 
+                        ? 'line-through text-muted-foreground' 
+                        : 'group-hover:text-primary'
+                    }`}>
                       {product.title}
                     </h3>
                     <p className="text-muted-foreground mb-3">
                       {product.description}
                     </p>
+                    
+                    {/* Unavailable Badge */}
+                    {product.status === 'unavailable' && (
+                      <Badge variant="destructive" className="mb-3 text-xs">
+                        Belum Tersedia
+                      </Badge>
+                    )}
+                    
                     <div className="flex items-center justify-between">
-                      <span className="text-sm font-semibold text-primary">
+                      <span className={`text-sm font-semibold ${
+                        product.status === 'unavailable' ? 'text-muted-foreground line-through' : 'text-primary'
+                      }`}>
                         {product.price}
                       </span>
-                      <motion.span
-                        initial={{ opacity: 0, x: -10 }}
-                        whileHover={{ opacity: 1, x: 0 }}
-                        className="text-primary text-sm font-medium"
-                      >
-                        Pesan →
-                      </motion.span>
+                      {product.status === 'available' && (
+                        <motion.span
+                          initial={{ opacity: 0, x: -10 }}
+                          whileHover={{ opacity: 1, x: 0 }}
+                          className="text-primary text-sm font-medium"
+                        >
+                          Pesan →
+                        </motion.span>
+                      )}
                     </div>
                   </div>
 
                   {/* Hover Effect Overlay */}
-                  <motion.div
-                    className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-slow"
-                    initial={false}
-                    whileHover={{ scale: 1.05 }}
-                  />
+                  {product.status === 'available' && (
+                    <motion.div
+                      className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-slow"
+                      initial={false}
+                      whileHover={{ scale: 1.05 }}
+                    />
+                  )}
                 </div>
               </Card>
             </motion.div>
