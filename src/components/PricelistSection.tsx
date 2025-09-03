@@ -25,10 +25,10 @@ const pricelist = {
     { name: 'Undangan Custom Design', price: 'Rp 15.000', unit: '/pcs', popular: false, status: 'available' },
   ],
   banner: [
-    { name: 'Banner Indoor', price: 'Rp 25.000', unit: '/m²', popular: false, status: 'available' },
-    { name: 'Banner Outdoor', price: 'Rp 35.000', unit: '/m²', popular: true, status: 'available' },
-    { name: 'X-Banner 60x160', price: 'Rp 75.000', unit: '/unit', popular: false, status: 'available' },
-    { name: 'Roll Banner 80x200', price: 'Rp 100.000', unit: '/unit', popular: false, status: 'available' },
+    { name: 'Banner Indoor', price: 'Rp 25.000', unit: '/m²', popular: false, status: 'unavailable' },
+    { name: 'Banner Outdoor', price: 'Rp 35.000', unit: '/m²', popular: true, status: 'unavailable' },
+    { name: 'X-Banner 60x160', price: 'Rp 75.000', unit: '/unit', popular: false, status: 'unavailable' },
+    { name: 'Roll Banner 80x200', price: 'Rp 100.000', unit: '/unit', popular: false, status: 'unavailable' },
   ],
 };
 
