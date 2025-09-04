@@ -19,7 +19,7 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 sm:pt-0">
       {/* Gradient Background */}
       <div className="absolute inset-0 bg-gradient-hero opacity-90" />
       
