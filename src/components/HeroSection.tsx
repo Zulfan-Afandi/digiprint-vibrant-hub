@@ -21,10 +21,10 @@ const HeroSection = () => {
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center pt-24 sm:pt-28 md:pt-32">
       {/* Gradient Background */}
-      <div className="absolute inset-0 -z-10 bg-gradient-hero opacity-90 pointer-events-none" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-pink-500 via-purple-500 to-indigo-600 opacity-90 pointer-events-none" />
       
       {/* Animated Background Elements */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-orange-500 via-pink-500 to-blue-600 opacity-90 pointer-events-none">
+      <div className="absolute inset-0 -z-10 pointer-events-none">
         {[...Array(20)].map((_, i) => (
           <motion.div
             key={i}
