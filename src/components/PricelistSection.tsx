@@ -8,7 +8,7 @@ import { Check, Star } from 'lucide-react';
 const pricelist = {
   fotokopi: [
     { name: 'Fotokopi A4 Hitam Putih', price: 'Rp 300', unit: '/lembar', popular: false, status: 'available' },
-    { name: 'Fotokopi A4 Warna', price: 'Rp 2.000', unit: '/lembar', popular: true, status: 'unavailable' },
+    { name: 'Fotokopi A4 Warna', price: 'Rp 1.500', unit: '/lembar', popular: true, status: 'unavailable' },
     { name: 'Fotokopi A3 Hitam Putih', price: 'Rp 1.000', unit: '/lembar', popular: false, status: 'unavailable' },
     { name: 'Fotokopi A3 Warna', price: 'Rp 4.000', unit: '/lembar', popular: false, status: 'unavailable' },
   ],
