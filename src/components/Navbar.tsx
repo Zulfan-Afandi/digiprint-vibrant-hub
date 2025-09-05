@@ -28,7 +28,7 @@ const Navbar = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
-      className="sticky top-0 z-50 bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 border-b transition-all duration-500"
+      className="sticky top-0 z-50 bg-transparent border-b border-white/20 transition-all duration-slow"
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
