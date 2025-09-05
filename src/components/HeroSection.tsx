@@ -24,7 +24,7 @@ const HeroSection = () => {
       <div className="absolute inset-0 -z-10 bg-gradient-hero opacity-90 pointer-events-none" />
       
       {/* Animated Background Elements */}
-      <div className="absolute inset-0 -z-10 pointer-events-none">
+     <div className="absolute inset-0 -z-10 bg-gradient-to-b from-pink-500 via-purple-500 to-indigo-600 opacity-90 pointer-events-none" />
         {[...Array(20)].map((_, i) => (
           <motion.div
             key={i}
