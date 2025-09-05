@@ -122,7 +122,7 @@ const ContactSection = () => {
                 variant="accent"
                 size="lg"
                 className="group"
-                onClick={() => window.open('https://wa.me/6281234567890', '_blank')}
+                onClick={() => window.open('https://wa.me/6282332346543', '_blank')}
               >
                 <MessageCircle className="mr-2 h-5 w-5 group-hover:animate-bounce" />
                 Chat WhatsApp
