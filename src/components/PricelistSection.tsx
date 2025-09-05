@@ -35,6 +35,14 @@ const pricelist = {
 const PricelistSection = () => {
   const [activeCategory, setActiveCategory] = useState('fotokopi');
 
+  const categoryStyles = {
+    default: { from: 'from-primary/20', via: 'via-primary/10' },
+    fotokopi: { from: 'from-primary/20', via: 'via-primary/10' },
+    print: { from: 'from-blue-400/20', via: 'via-blue-400/10' },
+    undangan: { from: 'from-rose-400/20', via: 'via-rose-400/10' },
+    banner: { from: 'from-amber-400/20', via: 'via-amber-400/10' },
+  };
+
   return (
     <section id="pricelist" className="py-20 bg-background-secondary">
       <div className="container mx-auto px-4">
@@ -91,7 +99,7 @@ const PricelistSection = () => {
 
           {/* Price Cards */}
           {Object.entries(pricelist).map(([category, items]) => (
-            <TabsContent key={category} value={category} className="space-y-4">
+            <TabsContent key={category} value={category} className="space-y-4 min-h-[400px]">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -105,11 +113,20 @@ const PricelistSection = () => {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.3, delay: index * 0.1 }}
                   >
-                    <Card className={`p-6 hover:shadow-lg transition-all duration-base ${
+                    <Card className={`relative overflow-hidden rounded-2xl border bg-card hover:shadow-lg transition-all duration-base group ${
                       item.popular ? 'border-accent shadow-glow relative overflow-hidden' : ''
                     } ${
                       item.status === 'unavailable' ? 'opacity-60' : ''
                     }`}>
+                      {/* Bottom Overlay */}
+                      {item.status === 'available' && (
+                        <div className={`absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t ${
+                          categoryStyles[category]?.from || categoryStyles.default.from
+                        } ${
+                          categoryStyles[category]?.via || categoryStyles.default.via
+                        } to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out pointer-events-none -z-0`} />
+                      )}
+                      
                       {item.popular && (
                         <div className="absolute top-0 right-0 bg-accent text-accent-foreground px-3 py-1 rounded-bl-lg text-xs font-semibold flex items-center gap-1">
                           <Star className="h-3 w-3" />
@@ -117,7 +134,7 @@ const PricelistSection = () => {
                         </div>
                       )}
                       
-                      <div className="flex items-center justify-between">
+                      <div className="relative z-10 p-5 flex items-center justify-between">
                         <div className="flex items-center gap-4">
                           <motion.div
                             whileHover={{ scale: 1.2 }}

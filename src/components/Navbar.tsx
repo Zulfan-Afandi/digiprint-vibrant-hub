@@ -28,11 +28,7 @@ const Navbar = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-slow ${
-        isScrolled
-          ? 'bg-background/95 backdrop-blur-lg shadow-lg'
-          : 'bg-background/80 backdrop-blur-sm'
-      }`}
+      className="sticky top-0 z-50 backdrop-blur bg-white/70 dark:bg-neutral-900/70 border-b border-white/20 transition-all duration-slow"
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">

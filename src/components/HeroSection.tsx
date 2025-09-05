@@ -19,12 +19,12 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 sm:pt-0">
+    <section id="home" className="relative min-h-screen flex items-center justify-center pt-24 sm:pt-28 md:pt-32">
       {/* Gradient Background */}
-      <div className="absolute inset-0 bg-gradient-hero opacity-90" />
+      <div className="absolute inset-0 -z-10 bg-gradient-hero opacity-90 pointer-events-none" />
       
       {/* Animated Background Elements */}
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 -z-10 pointer-events-none">
         {[...Array(20)].map((_, i) => (
           <motion.div
             key={i}
@@ -115,7 +115,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.8 }}
-            className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-2xl mx-auto"
+            className="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-2xl mx-auto items-stretch"
           >
             {[
               { label: 'Proses Cepat', value: '1 Jam Jadi' },
@@ -125,10 +125,13 @@ const HeroSection = () => {
               <motion.div
                 key={index}
                 whileHover={{ scale: 1.05 }}
-                className="bg-primary-foreground/10 backdrop-blur-sm border border-primary-foreground/20 rounded-lg p-4"
+                className="relative overflow-hidden rounded-2xl bg-primary-foreground/10 backdrop-blur-sm border border-primary-foreground/20 group"
               >
-                <div className="text-accent font-bold text-xl mb-1">{feature.value}</div>
-                <div className="text-primary-foreground/80 text-sm">{feature.label}</div>
+                <div className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-primary/20 via-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out pointer-events-none -z-0" />
+                <div className="relative z-10 p-4 md:p-5">
+                  <div className="text-accent font-bold text-xl mb-1">{feature.value}</div>
+                  <div className="text-primary-foreground/80 text-sm">{feature.label}</div>
+                </div>
               </motion.div>
             ))}
           </motion.div>
