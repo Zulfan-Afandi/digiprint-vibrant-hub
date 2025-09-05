@@ -7,14 +7,14 @@ const contactInfo = [
   {
     icon: Phone,
     title: 'Telepon',
-    content: '0812-3456-7890',
-    action: 'tel:081234567890',
+    content: '0823-3234-6543',
+    action: 'tel:082332346543',
   },
   {
     icon: MessageCircle,
     title: 'WhatsApp',
-    content: '0812-3456-7890',
-    action: 'https://wa.me/6281234567890',
+    content: '0823-3234-6543',
+    action: 'https://wa.me/6282332346543',
   },
   {
     icon: Mail,
@@ -25,8 +25,8 @@ const contactInfo = [
   {
     icon: MapPin,
     title: 'Lokasi',
-    content: 'Jl. Sudirman No. 123, Jakarta',
-    action: 'https://maps.google.com',
+    content: 'Jl. Babatan, Kel. Arjowinangun, Kec. Kedungkandang, Malang',
+    action: 'https://maps.app.goo.gl/DpVAMKiToDj5TU2P6',
   },
 ];
 
