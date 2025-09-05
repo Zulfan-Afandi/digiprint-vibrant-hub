@@ -87,10 +87,10 @@ const ProductsSection = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
               <Card className="group relative overflow-hidden h-full hover:shadow-card transition-all duration-slow cursor-pointer">
-                {/* Background Gradient on Hover */}
-                <div className={`absolute inset-0 bg-gradient-card opacity-0 transition-opacity duration-slow ${
-                  product.status === 'available' ? 'group-hover:opacity-100' : ''
-                }`} />
+                {/* Bottom Overlay Gradient on Hover */}
+                {product.status === 'available' && (
+                  <div className="absolute bottom-0 left-0 right-0 h-2/5 bg-gradient-to-t from-primary/20 via-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out" />
+                )}
                 
                 <div className={`relative p-6 space-y-4 ${
                   product.status === 'unavailable' ? 'opacity-60' : ''
@@ -149,13 +149,6 @@ const ProductsSection = () => {
                   </div>
 
                   {/* Hover Effect Overlay */}
-                  {product.status === 'available' && (
-                    <motion.div
-                      className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-slow"
-                      initial={false}
-                      whileHover={{ scale: 1.05 }}
-                    />
-                  )}
                 </div>
               </Card>
             </motion.div>
