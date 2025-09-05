@@ -19,12 +19,12 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center pt-24 sm:pt-28 md:pt-32">
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Gradient Background */}
-      <div className="absolute inset-0 -z-10 bg-gradient-hero opacity-90" />
+      <div className="absolute inset-0 bg-gradient-hero opacity-90" />
       
       {/* Animated Background Elements */}
-      <div className="absolute inset-0 -z-10 ">
+      <div className="absolute inset-0 -z-10 pointer-events-none">
         {[...Array(20)].map((_, i) => (
           <motion.div
             key={i}
